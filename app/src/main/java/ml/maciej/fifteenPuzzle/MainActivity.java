@@ -18,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     Random rand = new Random();
     Set<Integer> set = new LinkedHashSet<Integer>();
 
+    TextView textView;
+
     Chronometer chronometer;
     boolean running;
 
@@ -48,93 +50,95 @@ public class MainActivity extends AppCompatActivity {
         puzzle[3][2] = (Button)findViewById(R.id.button15);
         puzzle[3][3] = (Button)findViewById(R.id.button16);
 
+        textView = (TextView)findViewById(R.id.textView);
+
         setAllFactoryValues();
         setAllEnabled(false);
 
     }
 
-    //Direction 1 - UP, 2 - RIGHT, 3 - DOWN, 4 - LEFT
+    //Directions 1 - UP, 2 - RIGHT, 3 - DOWN, 4 - LEFT
     public void blockCheck(int blockNumber) {
         switch (blockNumber){
             case 16: //[3][3]
-                if (puzzle[2][3].getText() == "") blockMove(3,3,1); //Jeśli u góry jest pusty
-                else if (puzzle[3][2].getText() == "") blockMove(3,3,4); //Jeśli po lewej jest pusty
+                if (puzzle[2][3].getText() == "") blockMove(3,3,1); //if upper block is free
+                else if (puzzle[3][2].getText() == "") blockMove(3,3,4); //if left block is free
                 break;
             case 15: //[3][2]
-                if (puzzle[2][2].getText() == "") blockMove(3,2,1); //Jeśli u góry jest pusty
-                else if (puzzle[3][3].getText() == "") blockMove(3,2,2); //Jeśli po prawej jest pusty
-                else if (puzzle[3][1].getText() == "") blockMove(3,2,4); //Jeśli po lewej jest pusty
+                if (puzzle[2][2].getText() == "") blockMove(3,2,1); //if upper block is free
+                else if (puzzle[3][3].getText() == "") blockMove(3,2,2); //if right block is free
+                else if (puzzle[3][1].getText() == "") blockMove(3,2,4); //if left block is free
                 break;
             case 14: //[3][1]
-                if (puzzle[2][1].getText() == "") blockMove(3,1,1); //Jeśli u góry jest pusty
-                else if (puzzle[3][2].getText() == "") blockMove(3,1,2); //Jeśli po prawej jest pusty
-                else if (puzzle[3][0].getText() == "") blockMove(3,1,4); //Jeśli po lewej jest pusty
+                if (puzzle[2][1].getText() == "") blockMove(3,1,1); //if upper block is free
+                else if (puzzle[3][2].getText() == "") blockMove(3,1,2); //if right block is free
+                else if (puzzle[3][0].getText() == "") blockMove(3,1,4); //if left block is free
                 break;
             case 13: //[3][0]
-                if (puzzle[2][0].getText() == "") blockMove(3,0,1); //Jeśli u góry jest pusty
-                else if (puzzle[3][1].getText() == "") blockMove(3,0,2); //Jeśli po prawej jest pusty
+                if (puzzle[2][0].getText() == "") blockMove(3,0,1); //if upper block is free
+                else if (puzzle[3][1].getText() == "") blockMove(3,0,2); //if right block is free
                 break;
             case 12: //[2][3]
-                if (puzzle[1][3].getText() == "") blockMove(2,3,1); //Jeśli u góry jest pusty
-                else if (puzzle[3][3].getText() == "") blockMove(2,3,3); //Jeśli na dole jest pusty
-                else if (puzzle[2][2].getText() == "") blockMove(2,3,4); //Jeśli po lewej jest pusty
+                if (puzzle[1][3].getText() == "") blockMove(2,3,1); //if upper block is free
+                else if (puzzle[3][3].getText() == "") blockMove(2,3,3); //if bottom block is free
+                else if (puzzle[2][2].getText() == "") blockMove(2,3,4); //if left block is free
                 break;
             case 11: //[2][2]
-                if (puzzle[1][2].getText() == "") blockMove(2,2,1); //Jeśli u góry jest pusty
-                else if (puzzle[2][3].getText() == "") blockMove(2,2,2); //Jeśli po prawej jest pusty
-                else if (puzzle[3][2].getText() == "") blockMove(2,2,3); //Jeśli na dole jest pusty
-                else if (puzzle[2][1].getText() == "") blockMove(2,2,4); //Jeśli po lewej jest pusty
+                if (puzzle[1][2].getText() == "") blockMove(2,2,1); //if upper block is free
+                else if (puzzle[2][3].getText() == "") blockMove(2,2,2); //if right block is free
+                else if (puzzle[3][2].getText() == "") blockMove(2,2,3); //if bottom block is free
+                else if (puzzle[2][1].getText() == "") blockMove(2,2,4); //if left block is free
                 break;
             case 10: //[2][1]
-                if (puzzle[1][1].getText() == "") blockMove(2,1,1); //Jeśli u góry jest pusty
-                else if (puzzle[2][2].getText() == "") blockMove(2,1,2); //Jeśli po prawej jest pusty
-                else if (puzzle[3][1].getText() == "") blockMove(2,1,3); //Jeśli na dole jest pusty
-                else if (puzzle[2][0].getText() == "") blockMove(2,1,4); //Jeśli po lewej jest pusty
+                if (puzzle[1][1].getText() == "") blockMove(2,1,1); //if upper block is free
+                else if (puzzle[2][2].getText() == "") blockMove(2,1,2); //if right block is free
+                else if (puzzle[3][1].getText() == "") blockMove(2,1,3); //if bottom block is free
+                else if (puzzle[2][0].getText() == "") blockMove(2,1,4); //if left block is free
                 break;
             case 9: //[2][0]
-                if (puzzle[1][0].getText() == "") blockMove(2,0,1); //Jeśli u góry jest pusty
-                else if (puzzle[2][1].getText() == "") blockMove(2,0,2); //Jeśli po prawej jest pusty
-                else if (puzzle[3][0].getText() == "") blockMove(2,0,3); //Jeśli na dole jest pusty
+                if (puzzle[1][0].getText() == "") blockMove(2,0,1); //if upper block is free
+                else if (puzzle[2][1].getText() == "") blockMove(2,0,2); //if right block is free
+                else if (puzzle[3][0].getText() == "") blockMove(2,0,3); //if bottom block is free
                 break;
             case 8: //[1][3]
-                if (puzzle[0][3].getText() == "") blockMove(1,3,1); //Jeśli u góry jest pusty
-                else if (puzzle[2][3].getText() == "") blockMove(1,3,3); //Jeśli na dole jest pusty
-                else if (puzzle[1][2].getText() == "") blockMove(1,3,4); //Jeśli po lewej jest pusty
+                if (puzzle[0][3].getText() == "") blockMove(1,3,1); //if upper block is free
+                else if (puzzle[2][3].getText() == "") blockMove(1,3,3); //if bottom block is free
+                else if (puzzle[1][2].getText() == "") blockMove(1,3,4); //if left block is free
                 break;
             case 7: //[1][2]
-                if (puzzle[0][2].getText() == "") blockMove(1,2,1); //Jeśli u góry jest pusty
-                else if (puzzle[1][3].getText() == "") blockMove(1,2,2); //Jeśli po prawej jest pusty
-                else if (puzzle[2][2].getText() == "") blockMove(1,2,3); //Jeśli na dole jest pusty
-                else if (puzzle[1][1].getText() == "") blockMove(1,2,4); //Jeśli po lewej jest pusty
+                if (puzzle[0][2].getText() == "") blockMove(1,2,1); //if upper block is free
+                else if (puzzle[1][3].getText() == "") blockMove(1,2,2); //if right block is free
+                else if (puzzle[2][2].getText() == "") blockMove(1,2,3); //if bottom block is free
+                else if (puzzle[1][1].getText() == "") blockMove(1,2,4); //if left block is free
                 break;
             case 6: //[1][1]
-                if (puzzle[0][1].getText() == "") blockMove(1,1,1); //Jeśli u góry jest pusty
-                else if (puzzle[1][2].getText() == "") blockMove(1,1,2); //Jeśli po prawej jest pusty
-                else if (puzzle[2][1].getText() == "") blockMove(1,1,3); //Jeśli na dole jest pusty
-                else if (puzzle[1][0].getText() == "") blockMove(1,1,4); //Jeśli po lewej jest pusty
+                if (puzzle[0][1].getText() == "") blockMove(1,1,1); //if upper block is free
+                else if (puzzle[1][2].getText() == "") blockMove(1,1,2); //if right block is free
+                else if (puzzle[2][1].getText() == "") blockMove(1,1,3); //if bottom block is free
+                else if (puzzle[1][0].getText() == "") blockMove(1,1,4); //if left block is free
                 break;
             case 5: //[1][3]
-                if (puzzle[0][0].getText() == "") blockMove(1,0,1); //Jeśli u góry jest pusty
-                else if (puzzle[1][1].getText() == "") blockMove(1,0,2); //Jeśli po prawej jest pusty
-                else if (puzzle[2][0].getText() == "") blockMove(1,0,3); //Jeśli na dole jest pusty
+                if (puzzle[0][0].getText() == "") blockMove(1,0,1); //if upper block is free
+                else if (puzzle[1][1].getText() == "") blockMove(1,0,2); //if right block is free
+                else if (puzzle[2][0].getText() == "") blockMove(1,0,3); //if bottom block is free
                 break;
             case 4: //[0][3]
-                if (puzzle[1][3].getText() == "") blockMove(0,3,3); //Jeśli na dole jest pusty
-                else if (puzzle[0][2].getText() == "") blockMove(0,3,4); //Jeśli po lewej jest pusty
+                if (puzzle[1][3].getText() == "") blockMove(0,3,3); //if bottom block is free
+                else if (puzzle[0][2].getText() == "") blockMove(0,3,4); //if left block is free
                 break;
             case 3: //[0][2]
-                if (puzzle[0][3].getText() == "") blockMove(0,2,2); //Jeśli po prawej jest pusty
-                else if (puzzle[1][2].getText() == "") blockMove(0,2,3); //Jeśli na dole jest pusty
-                else if (puzzle[0][1].getText() == "") blockMove(0,2,4); //Jeśli po lewej jest pusty
+                if (puzzle[0][3].getText() == "") blockMove(0,2,2); //if right block is free
+                else if (puzzle[1][2].getText() == "") blockMove(0,2,3); //if bottom block is free
+                else if (puzzle[0][1].getText() == "") blockMove(0,2,4); //if left block is free
                 break;
             case 2: //[0][1]
-                if (puzzle[0][2].getText() == "") blockMove(0,1,2); //Jeśli po prawej jest pusty
-                else if (puzzle[1][1].getText() == "") blockMove(0,1,3); //Jeśli na dole jest pusty
-                else if (puzzle[0][0].getText() == "") blockMove(0,1,4); //Jeśli po lewej jest pusty
+                if (puzzle[0][2].getText() == "") blockMove(0,1,2); //if right block is free
+                else if (puzzle[1][1].getText() == "") blockMove(0,1,3); //if bottom block is free
+                else if (puzzle[0][0].getText() == "") blockMove(0,1,4); //if left block is free
                 break;
             case 1: //[0][0]
-                if (puzzle[0][1].getText() == "") blockMove(0,0,2); //Jeśli po prawej jest pusty
-                else if (puzzle[1][0].getText() == "") blockMove(0,0,3); //Jeśli na dole jest pusty
+                if (puzzle[0][1].getText() == "") blockMove(0,0,2); //if right block is free
+                else if (puzzle[1][0].getText() == "") blockMove(0,0,3); //if bottom block is free
         }
         if(
                 puzzle[0][0].getText().toString().equals("1") &&
@@ -154,13 +158,12 @@ public class MainActivity extends AppCompatActivity {
                         puzzle[3][2].getText().toString().equals("15")) {
             chronometer.stop();
             running = false;
-            TextView wynik = (TextView)findViewById(R.id.textView);
-            wynik.setText("Wygrałeś");
+            textView.setText("You won!");
             setAllEnabled(false);
         }
     }
 
-    //Kierunek 1 - góra, 2 - prawo, 3 - dół, 4 - lewo
+    //Directions 1 - UP, 2 - RIGHT, 3 - DOWN, 4 - LEFT
     void blockMove(int y, int x, int kierunek){
         int tmpX, tmpY;
         tmpX=x;
@@ -179,10 +182,10 @@ public class MainActivity extends AppCompatActivity {
                 tmpY=y-1;
                 break;
         }
-        puzzle[tmpY][tmpX].setText(puzzle[y][x].getText()); //Pustemu klockowi ustawiamy wartość klikniętego
-        puzzle[tmpY][tmpX].setVisibility(View.VISIBLE); //Uwidocznienie pustego klocka
-        puzzle[y][x].setText(""); //Pusty klocek wchodzi na miejsce klocka klikniętego
-        puzzle[y][x].setVisibility(View.INVISIBLE); //Ukrycie klikniętego blockMoveu
+        puzzle[tmpY][tmpX].setText(puzzle[y][x].getText()); //set free block value of clicked
+        puzzle[tmpY][tmpX].setVisibility(View.VISIBLE); //make free block visible
+        puzzle[y][x].setText(""); //set clicked block as free
+        puzzle[y][x].setVisibility(View.INVISIBLE); //make clicked block invisible
     }
 
     public void button1(View view) { blockCheck(1); }
@@ -206,6 +209,7 @@ public class MainActivity extends AppCompatActivity {
 
         setAllFactoryValues();
         setAllEnabled(true);
+        textView.setText("");
 
         puzzle[0][0].setVisibility(View.VISIBLE);
         puzzle[0][1].setVisibility(View.VISIBLE);
